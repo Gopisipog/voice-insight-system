@@ -6,6 +6,7 @@ Uses OpenAI Whisper API (no local model needed).
 
 import os
 import io
+import sys
 import time
 import tempfile
 from pathlib import Path
@@ -37,7 +38,9 @@ if "selected_segment" not in st.session_state:
 if "transcript_history" not in st.session_state:
     st.session_state.transcript_history = ""
 if "api_key_configured" not in st.session_state:
-    st.session_state.api_key_configured = bool(os.getenv("OPENAI_API_KEY", ""))
+    st.session_state.api_key_configured = bool(os.getenv("OPENAI_API_KEY", "")) or bool(os.getenv("OPENAI_API_KEY", "").startswith("sk-"))
+if "openai_api_key" not in st.session_state:
+    st.session_state.openai_api_key = os.getenv("OPENAI_API_KEY", "")
 
 
 def init_core_modules():
@@ -156,10 +159,12 @@ with st.sidebar:
         value=os.getenv("OPENAI_API_KEY", ""),
         help="Get your key at https://platform.openai.com/api-keys",
     )
-    if api_key:
+    if api_key and api_key.startswith("sk-"):
         st.session_state.openai_api_key = api_key
         st.session_state.api_key_configured = True
         st.success("✅ API Key configured")
+    elif api_key and not api_key.startswith("sk-"):
+        st.warning("⚠️ Invalid key format (should start with 'sk-')")
     elif os.getenv("OPENAI_API_KEY"):
         st.session_state.api_key_configured = True
         st.success("✅ API Key from environment")
