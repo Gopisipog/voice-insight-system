@@ -5,7 +5,9 @@ function App() {
   const VITE_SERVER_PORT = import.meta.env.VITE_SERVER_PORT || 9000;
   const VITE_BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST || 'localhost';
   const HTTP_PORT = VITE_SERVER_PORT;
-  const BASE_HTTP = `http://${VITE_BACKEND_HOST}:${HTTP_PORT}`;
+  const PROTO = window.location.protocol === 'https:' ? 'https:' : 'http:';
+  const WS_PROTO = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  const BASE_HTTP = `${PROTO}//${VITE_BACKEND_HOST}:${HTTP_PORT}`;
   const [segments, setSegments] = useState([]);
   const [selectedSegment, setSelectedSegment] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
@@ -25,7 +27,7 @@ function App() {
       if (socketRef.current) socketRef.current.close();
       if (audioSocketRef.current) audioSocketRef.current.close();
 
-      const BACKEND = `ws://${VITE_BACKEND_HOST}:${HTTP_PORT}`;
+      const BACKEND = `${WS_PROTO}//${VITE_BACKEND_HOST}:${HTTP_PORT}`;
       socketRef.current = new WebSocket(`${BACKEND}/ws/live`);
       socketRef.current.onmessage = (event) => {
         const data = JSON.parse(event.data);
