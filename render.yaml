@@ -1,7 +1,7 @@
 services:
   # Backend API server (Python FastAPI + Whisper)
   - type: web
-    name: voice-insight-backend
+    name: voice-insight-system
     runtime: python
     plan: free
     buildCommand: pip install -r requirements-render.txt
