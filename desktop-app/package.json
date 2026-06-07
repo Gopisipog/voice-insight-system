@@ -1,0 +1,48 @@
+{
+  "name": "voice-insight-desktop",
+  "version": "1.0.0",
+  "description": "Voice Insight System - Desktop App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --x64",
+    "build:portable": "electron-builder --win --x64 portable",
+    "dist": "electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "com.voiceinsight.desktop",
+    "productName": "VoiceInsight",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "VoiceInsight"
+    },
+    "extraResources": [
+      {
+        "from": "../core",
+        "to": "core"
+      }
+    ]
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "dependencies": {}
+}

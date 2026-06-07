@@ -173,6 +173,13 @@ function App() {
             Run Command on Segment
           </button>
         </div>
+
+        <div className="download-section">
+          <button className="download-btn" onClick={() => window.open('https://github.com/Gopisipog/voice-insight-system/releases/latest', '_blank')}>
+            ⬇ Download Desktop App
+          </button>
+          <span className="download-hint">Windows • macOS • Linux</span>
+        </div>
       </nav>
 
       <main className="content">
