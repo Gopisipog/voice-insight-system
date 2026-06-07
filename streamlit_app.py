@@ -53,41 +53,91 @@ def init_core_modules():
         st.session_state.shell_runner = ShellRunner()
 
 
-def transcribe_audio(audio_bytes: bytes, filename: str = "audio.webm") -> str:
-    """Transcribe audio using OpenAI Whisper API."""
-    client = openai.OpenAI(api_key=st.session_state.get("openai_api_key", os.getenv("OPENAI_API_KEY")))
+def convert_to_wav(audio_bytes: bytes) -> bytes:
+    """Convert audio bytes to proper 16-bit 16kHz mono WAV using ffmpeg."""
+    import subprocess
     
-    # Determine MIME type from extension
-    ext = Path(filename).suffix.lower()
-    mime_map = {
-        ".wav": "audio/wav",
-        ".mp3": "audio/mpeg",
-        ".m4a": "audio/mp4",
-        ".webm": "audio/webm",
-        ".ogg": "audio/ogg",
-        ".flac": "audio/flac",
-    }
-    mime = mime_map.get(ext, "audio/webm")
+    with tempfile.NamedTemporaryFile(suffix=".webm", delete=False) as tmp_in:
+        tmp_in.write(audio_bytes)
+        in_path = tmp_in.name
+    
+    out_path = os.path.join(tempfile.gettempdir(), "converted_output.wav")
+    
+    try:
+        subprocess.run(
+            ["ffmpeg", "-y", "-i", in_path, "-ar", "16000", "-ac", "1", "-sample_fmt", "s16", out_path],
+            capture_output=True, timeout=15, check=True
+        )
+        with open(out_path, "rb") as f:
+            result = f.read()
+        return result
+    except:
+        return None  # ffmpeg not available
+    finally:
+        try: os.unlink(in_path)
+        except: pass
+        try: os.unlink(out_path)
+        except: pass
+
+
+def transcribe_audio(audio_bytes: bytes, filename: str = "audio.webm") -> str:
+    """Transcribe audio using OpenAI Whisper API.
+    Converts to proper WAV format for best accuracy.
+    """
+    client = openai.OpenAI(api_key=st.session_state.get("openai_api_key", os.getenv("OPENAI_API_KEY")))
     
     with st.spinner("🧠 Transcribing audio with Whisper..."):
         try:
-            # Write to temp file for OpenAI API
-            with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
-                tmp.write(audio_bytes)
-                tmp_path = tmp.name
+            # Strategy 1: Convert to proper WAV using ffmpeg (best quality)
+            wav_bytes = convert_to_wav(audio_bytes)
             
-            with open(tmp_path, "rb") as f:
+            if wav_bytes:
+                # Send converted WAV to Whisper API
                 response = client.audio.transcriptions.create(
                     model="whisper-1",
-                    file=(filename, f, mime),
+                    file=("audio.wav", wav_bytes, "audio/wav"),
                     response_format="text",
                 )
+                text = response.strip()
+                if text:
+                    return text
             
-            os.unlink(tmp_path)  # Cleanup
+            # Strategy 2: Try original bytes as-is
+            ext = Path(filename).suffix.lower()
+            mime_map = {".wav": "audio/wav", ".mp3": "audio/mpeg", ".m4a": "audio/mp4", 
+                        ".webm": "audio/webm", ".ogg": "audio/ogg", ".flac": "audio/flac"}
+            mime = mime_map.get(ext, "audio/webm")
+            
+            response = client.audio.transcriptions.create(
+                model="whisper-1",
+                file=(filename, audio_bytes, mime),
+                response_format="text",
+            )
             return response.strip()
         
         except Exception as e:
             st.error(f"Transcription error: {e}")
+            
+            # Strategy 3: Last resort - try raw PCM interpretation
+            try:
+                import numpy as np
+                import scipy.io.wavfile as wav
+                import io as io_module
+                
+                # Try to interpret as raw PCM int16
+                raw_data = np.frombuffer(audio_bytes, dtype=np.int16)
+                if len(raw_data) > 2000:  # At least 0.1 sec of audio
+                    buf = io_module.BytesIO()
+                    wav.write(buf, 16000, raw_data)
+                    response = client.audio.transcriptions.create(
+                        model="whisper-1",
+                        file=("raw_audio.wav", buf.getvalue(), "audio/wav"),
+                        response_format="text",
+                    )
+                    return response.strip()
+            except:
+                pass
+            
             return ""
 
 
