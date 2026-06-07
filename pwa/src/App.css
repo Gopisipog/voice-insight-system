@@ -1,0 +1,228 @@
+:root {
+  --bg-dark: #020617;
+  --bg-panel: #0f172a;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.4);
+  --text: #f1f5f9;
+  --text-muted: #64748b;
+  --armed: #22c55e;
+  --spacing: 1.5rem;
+}
+
+body {
+  margin: 0;
+  font-family: 'Geist', 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  height: 100vh;
+  padding: 1rem;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  background-color: var(--bg-panel);
+  padding: var(--spacing);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 1.5rem;
+  border: 1px solid #1e293b;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.status-badge {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.5rem;
+  background: #000;
+  border-radius: 0.5rem;
+  color: var(--text-muted);
+}
+
+.mic-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background: #1e293b;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.mic-btn.listening {
+  background: #ef4444;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+.command-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.armed-preview {
+  background: #020617;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #334155;
+  font-size: 0.85rem;
+  min-height: 50px;
+  max-height: 120px;
+  overflow: hidden;
+  position: relative;
+}
+
+.armed-preview .placeholder {
+  color: #334155;
+  font-style: italic;
+}
+
+.armed-preview p { margin: 0; line-height: 1.4; color: var(--armed); }
+
+.command-input {
+  background: #000;
+  border: 1px solid #334155;
+  color: var(--accent);
+  padding: 1rem;
+  border-radius: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  min-height: 150px;
+  resize: none;
+}
+
+.execute-btn {
+  background: var(--accent);
+  color: #020617;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+}
+
+.execute-btn:disabled { opacity: 0.2; cursor: not-allowed; }
+
+.content {
+  display: grid;
+  grid-template-rows: auto 1fr 250px;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hint { font-size: 0.75rem; color: var(--text-muted); }
+
+.segments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.segment-card {
+  background: var(--bg-panel);
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  border: 1px solid #1e293b;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.segment-card:hover { border-color: #334155; transform: translateY(-2px); }
+
+.segment-card.selected {
+  border-color: var(--armed);
+  background: #112a1e;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.armed-tag {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 0.5rem;
+  font-weight: 900;
+  color: var(--armed);
+  border: 1px solid var(--armed);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.segment-meta { font-size: 0.6rem; color: var(--accent); margin-bottom: 0.5rem; font-weight: 700; }
+
+.console-area {
+  background: #000;
+  border-radius: 1.5rem;
+  border: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.console-header {
+  padding: 0.75rem 1.5rem;
+  background: #020617;
+  border-bottom: 1px solid #1e293b;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.console-body {
+  padding: 1rem 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+  color: #4ade80;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+pre { margin: 0; white-space: pre-wrap; }
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--text-muted);
+  border: 2px dashed #1e293b;
+  border-radius: 1.5rem;
+}

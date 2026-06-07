@@ -1,0 +1,758 @@
+Starting Voice Insight Server on port 9000...
+(Model: tiny, KMP_DUPLICATE_LIB_OK=TRUE, OMP_NUM_THREADS=2)
+INFO:     Started server process [16272]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:9000 (Press CTRL+C to quit)
+🏠 Local Mode: Loading Whisper 'tiny' on cpu...
+✅ ML Components initialized
+* Transcription worker active (High-Speed Mode).
+INFO:     127.0.0.1:52772 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52770 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:51780 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60772 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:62889 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60755 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:52923 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63407 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:55905 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61666 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:55961 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:57193 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:49188 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:57083 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:60040 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:58969 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63814 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60611 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:60616 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:52360 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:64531 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51378 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:53937 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63622 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+Audio stream opened.
+* Local Audio Stream Started (Device: Default).
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+INFO:     127.0.0.1:55702 - "POST /toggle-mic?active=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55702 - "POST /toggle-mic?active=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58323 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:65202 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+C:\Users\gopic\AppData\Roaming\Python\Python311\site-packages\whisper\transcribe.py:132: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+INFO:     127.0.0.1:55840 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:53151 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:54541 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50539 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+INFO:     127.0.0.1:60957 - "POST /toggle-mic?active=false HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     connection closed
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:49771 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60038 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:58657 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:62766 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream closed.
+Audio stream opened.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+INFO:     127.0.0.1:57136 - "POST /toggle-mic?active=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59874 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51984 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:53871 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50968 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:55355 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51087 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+INFO:     127.0.0.1:56364 - "POST /toggle-mic?active=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50871 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:57014 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:57973 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:53928 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:55215 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:53469 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:64514 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:62055 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:62610 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:55081 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:63755 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50477 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:57883 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:64548 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:51557 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:53826 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:63516 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61483 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:63899 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:58945 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:53440 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60048 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:60613 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:52081 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:58033 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61631 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+INFO:     127.0.0.1:58150 - "POST /toggle-mic?active=true HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:54902 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51918 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:52238 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51119 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+INFO:     127.0.0.1:58150 - "POST /toggle-mic?active=false HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:55234 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:52261 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:55648 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:52871 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:64685 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:52638 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:58144 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:49727 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:64817 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:54740 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:49946 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:53744 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:54267 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:55818 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:56367 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:58602 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+Audio stream closed.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream opened.
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+INFO:     127.0.0.1:56601 - "POST /toggle-mic?active=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58403 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:56356 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+INFO:     127.0.0.1:56601 - "POST /toggle-mic?active=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63157 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:56744 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:63424 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:54988 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:63821 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:52512 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:63449 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61060 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:50895 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:57120 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:55497 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:55934 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:55392 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51200 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream closed.
+Audio stream opened.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Audio stream closed.
+Audio stream closed.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+Audio stream closed.
+Audio stream opened.
+Transcription error: expected np.ndarray (got _io.BytesIO)
+INFO:     127.0.0.1:51092 - "POST /toggle-mic?active=true HTTP/1.1" 200 OK
+Transcription error: expected np.ndarray (got _io.BytesIO)
+INFO:     127.0.0.1:51092 - "POST /toggle-mic?active=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65484 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:50570 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:56149 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:55359 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:50386 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:62588 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:52216 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:49320 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:59385 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:60159 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60614 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:51140 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:56059 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:55107 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:55722 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:52171 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50060 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:61631 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:57504 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:62426 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:49319 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:64450 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:58939 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:52025 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60877 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:52367 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59444 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:62236 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50723 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:52861 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51690 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:56575 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51956 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:62896 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:53281 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:65522 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63341 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:63656 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50574 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:64604 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63144 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:49379 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61665 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:61243 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:55148 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:62209 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50441 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:54955 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:56243 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:55292 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:58037 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:63156 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:49686 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:60985 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60613 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:57020 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:49228 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:58226 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:64469 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:58345 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:64742 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:60619 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:53442 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:53592 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:53968 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:62502 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:61467 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:52961 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:56847 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:62589 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:58389 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:65530 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:64379 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:54543 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:55727 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:54318 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63150 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:62705 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:55442 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:56354 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:56009 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:55688 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:49402 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:59088 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:51957 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:61565 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:54583 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:54366 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:56964 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:58472 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:62253 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:50682 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:64017 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:60713 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59427 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:59051 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:54840 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     connection closed
+INFO:     127.0.0.1:61362 - "WebSocket /ws/live" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:56684 - "WebSocket /ws/audio" [accepted]
+INFO:     connection open
