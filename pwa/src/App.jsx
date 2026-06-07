@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
-  const HTTP_PORT = import.meta.env.VITE_SERVER_PORT || 9000;
-  const BASE_HTTP = `http://localhost:${HTTP_PORT}`;
+  const VITE_SERVER_PORT = import.meta.env.VITE_SERVER_PORT || 9000;
+  const VITE_BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST || 'localhost';
+  const HTTP_PORT = VITE_SERVER_PORT;
+  const BASE_HTTP = `http://${VITE_BACKEND_HOST}:${HTTP_PORT}`;
   const [segments, setSegments] = useState([]);
   const [selectedSegment, setSelectedSegment] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
@@ -23,7 +25,7 @@ function App() {
       if (socketRef.current) socketRef.current.close();
       if (audioSocketRef.current) audioSocketRef.current.close();
 
-      const BACKEND = `ws://localhost:${import.meta.env.VITE_SERVER_PORT || 9000}`;
+      const BACKEND = `ws://${VITE_BACKEND_HOST}:${HTTP_PORT}`;
       socketRef.current = new WebSocket(`${BACKEND}/ws/live`);
       socketRef.current.onmessage = (event) => {
         const data = JSON.parse(event.data);

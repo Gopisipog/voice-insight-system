@@ -8,3 +8,5 @@ dist/
 *.log
 temp_audio_chunk.webm
 err.txt
+pwa/dist/  
+pwa/node_modules/ 

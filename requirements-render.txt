@@ -1,0 +1,19 @@
+# Backend dependencies for Render.com deployment
+# (without PyAudio - not available on Render)
+# Downloads the tiny Whisper model (~75MB) on first load
+
+# Core
+fastapi>=0.110.0
+uvicorn>=0.29.0
+python-dotenv>=1.0.0
+websockets>=12.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Transcription - use OpenAI Whisper or faster-whisper
+# faster-whisper is lighter (uses CTranslate2)
+faster-whisper>=1.0.0
+
+# Segmenter (no extra deps needed)
+
+# CORS
