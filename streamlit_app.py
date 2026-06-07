@@ -110,6 +110,35 @@ def execute_command(command: str, input_text: str) -> str:
     return runner.run_command(command, input_text)
 
 
+def analyze_with_deepseek(text: str, instruction: str = "") -> str:
+    """Analyze transcribed text using DeepSeek's chat API (much cheaper than OpenAI)."""
+    api_key = st.session_state.get("deepseek_api_key", os.getenv("DEEPSEEK_API_KEY"))
+    if not api_key or "sk-your" in api_key or api_key == "":
+        return None  # No DeepSeek key configured
+    
+    client = openai.OpenAI(
+        api_key=api_key,
+        base_url="https://api.deepseek.com/v1"
+    )
+    
+    system_prompt = instruction or "You are an insightful analysis assistant. Extract key insights, patterns, and action items from the transcribed speech. Be concise and specific."
+    
+    with st.spinner("🧠 Analyzing with DeepSeek..."):
+        try:
+            response = client.chat.completions.create(
+                model="deepseek-chat",
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": f"Analyze this transcribed speech:\n\n{text}"}
+                ],
+                temperature=0.3,
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            st.warning(f"DeepSeek analysis error: {e}")
+            return None
+
+
 # ============================================================
 # UI
 # ============================================================
@@ -136,6 +165,28 @@ with st.sidebar:
         st.success("✅ API Key from environment")
     else:
         st.warning("⚠️ Enter an OpenAI API key to transcribe audio")
+    
+    st.divider()
+    
+    st.header("🧠 DeepSeek Analysis")
+    
+    deepseek_key = st.text_input(
+        "DeepSeek API Key (optional)",
+        type="password",
+        value=os.getenv("DEEPSEEK_API_KEY", ""),
+        help="Get your key at https://platform.deepseek.com/api_keys. Much cheaper than OpenAI for text analysis.",
+    )
+    if deepseek_key:
+        st.session_state.deepseek_api_key = deepseek_key
+        if deepseek_key and not deepseek_key.startswith("sk-your"):
+            st.success("✅ DeepSeek configured")
+    
+    deepseek_instruction = st.text_area(
+        "Analysis instruction (optional)",
+        value="Extract key insights, patterns, and action items from this speech. Be concise.",
+        height=60,
+        help="Custom instruction for DeepSeek on how to analyze the transcription",
+    )
     
     st.divider()
     
@@ -265,6 +316,16 @@ with col_cmd1:
 
 with col_cmd2:
     st.markdown("##### &nbsp;")
+    
+    has_deepseek = st.session_state.get("deepseek_api_key") and not st.session_state.deepseek_api_key.startswith("sk-your")
+    
+    if has_deepseek and st.button("🧠 Analyze with DeepSeek", disabled=not selected_seg_text):
+        with st.spinner("Analyzing..."):
+            result = analyze_with_deepseek(selected_seg_text, deepseek_instruction)
+            if result:
+                st.session_state.last_output = f"[DeepSeek Analysis]\n{result}"
+                st.balloons()
+    
     if st.button("▶️ Run Command", type="primary", disabled=not selected_seg_text):
         with st.spinner("Executing..."):
             result = execute_command(pipeline_command, selected_seg_text)
