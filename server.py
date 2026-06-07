@@ -42,7 +42,10 @@ def _init_components():
     from core.transcriber import Transcriber
     from core.segmenter import SemanticSegmenter
     from core.shell_runner import ShellRunner
-    from core.bot_manager import BotManager
+    try:
+        from core.bot_manager import BotManager
+    except ImportError:
+        BotManager = None
 
     model_size = os.getenv("WHISPER_MODEL", "small").strip()
     transcriber = Transcriber(model_size=model_size)

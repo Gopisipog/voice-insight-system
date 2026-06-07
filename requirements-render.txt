@@ -12,10 +12,10 @@ websockets>=12.0
 numpy>=1.24.0
 scipy>=1.10.0
 
-# Transcription - lightweight option (uses CTranslate2, no PyTorch needed)
+# Transcription - faster-whisper is lightweight (uses CTranslate2, not PyTorch)
 faster-whisper>=1.0.0
 
-# OR use OpenAI API instead (set OPENAI_API_KEY)
+# OpenAI API fallback
 openai>=1.0.0
 
 # Utilities
