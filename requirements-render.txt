@@ -1,19 +1,22 @@
-# Backend dependencies for Render.com deployment
-# (without PyAudio - not available on Render)
-# Downloads the tiny Whisper model (~75MB) on first load
+# Backend dependencies for Render.com / Railway / Fly.io
+# No PyAudio - not available on cloud platforms
 
-# Core
+# Web framework
 fastapi>=0.110.0
 uvicorn>=0.29.0
-python-dotenv>=1.0.0
+
+# Realtime
 websockets>=12.0
+
+# Audio processing
 numpy>=1.24.0
 scipy>=1.10.0
 
-# Transcription - use OpenAI Whisper or faster-whisper
-# faster-whisper is lighter (uses CTranslate2)
+# Transcription - lightweight option (uses CTranslate2, no PyTorch needed)
 faster-whisper>=1.0.0
 
-# Segmenter (no extra deps needed)
+# OR use OpenAI API instead (set OPENAI_API_KEY)
+openai>=1.0.0
 
-# CORS
+# Utilities
+python-dotenv>=1.0.0

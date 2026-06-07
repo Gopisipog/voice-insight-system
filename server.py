@@ -5,9 +5,17 @@ import queue
 import time
 import asyncio
 import numpy as np
-import pyaudio
 import io
 import tempfile
+
+# PyAudio is optional (only for local mic capture, not available on Render/cloud)
+try:
+    import pyaudio
+    HAS_PYAUDIO = True
+except ImportError:
+    pyaudio = None
+    HAS_PYAUDIO = False
+    print("* PyAudio not available - local mic capture disabled")
 from fastapi import FastAPI, WebSocket, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -114,6 +122,9 @@ async def transcription_worker():
 
 def mic_thread_logic():
     global mic_active
+    if not HAS_PYAUDIO:
+        print("* Local mic thread disabled (PyAudio not available)")
+        return
     p = pyaudio.PyAudio()
 
     device_id = os.getenv("WHISPER_INPUT_DEVICE_ID")

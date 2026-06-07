@@ -1,5 +1,22 @@
-streamlit>=1.40.0
+# Root requirements - for Streamlit Cloud deployment
+# For Render/Railway backend, use requirements-render.txt
+# For local desktop, install pyaudio separately
+
+# Web framework
+fastapi>=0.110.0
+uvicorn>=0.29.0
+websockets>=12.0
+
+# AI Transcription
 openai>=1.0.0
+faster-whisper>=1.0.0
+
+# Audio processing
 numpy>=1.24.0
 scipy>=1.10.0
+
+# Frontend tools
+streamlit>=1.40.0
+
+# Utilities
 python-dotenv>=1.0.0

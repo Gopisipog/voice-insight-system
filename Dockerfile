@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
+# Install Python dependencies (no PyAudio - not available)
 COPY requirements-render.txt .
 RUN pip install --no-cache-dir -r requirements-render.txt
 
