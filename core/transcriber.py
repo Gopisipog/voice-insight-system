@@ -3,24 +3,23 @@ import time
 import tempfile
 import numpy as np
 import scipy.io.wavfile as wav
-import whisper
 from openai import OpenAI
 
 class Transcriber:
     def __init__(self, model_size="small", device="cpu", compute_type="int8"):
-        """
-        Initializes the Transcriber.
-        Uses OpenAI API if OPENAI_API_KEY is present, otherwise falls back to local.
-        """
         self.api_key = os.getenv("OPENAI_API_KEY")
         self.client = None
+        self.model = None
         
         if self.api_key and "sk-" in self.api_key:
-            print("🚀 High-Fidelity Mode: OpenAI API enabled.")
+            print("OpenAI API enabled.")
             self.client = OpenAI(api_key=self.api_key)
         else:
-            print(f"🏠 Local Mode: Loading Whisper '{model_size}' on {device}...")
+            print(f"Local Mode: Loading Whisper '{model_size}' on {device}...")
+            import whisper
             self.model = whisper.load_model(model_size, device=device)
+        else:
+            print("⚠️ No transcription backend available! Install faster-whisper or set OPENAI_API_KEY.")
         
     def transcribe_file(self, file_path):
         """
@@ -28,41 +27,14 @@ class Transcriber:
         Accepts: file path (str), numpy array, or BytesIO object.
         """
         try:
-            # Handle file-like objects (BytesIO) from the PWA stream
-            cleanup_temp = False
-            if hasattr(file_path, 'read'):
-                import tempfile
-                # Use tempfile to avoid path issues
-                data = file_path.read()
-                if len(data) < 100:  # Too small to be valid audio
-                    return None
-                suffix = ".webm"
-                temp_fd, temp_path = tempfile.mkstemp(suffix=suffix)
-                os.close(temp_fd)
-                with open(temp_path, "wb") as f:
-                    f.write(data)
-                file_path = temp_path
-                cleanup_temp = True
-
             if self.client:
-                # Use OpenAI API (High Fidelity)
-                file_to_send = open(file_path, "rb") if isinstance(file_path, str) else file_path
-
-                response = self.client.audio.transcriptions.create(
-                    model="whisper-1", 
-                    file=file_to_send,
-                    response_format="text"
-                )
-                result = response.strip()
-                if cleanup_temp and os.path.exists(temp_path):
-                    os.remove(temp_path)
-                return result
+                return self._transcribe_api(file_path)
+            elif self.backend == "faster-whisper":
+                return self._transcribe_faster(file_path)
+            elif self.backend == "openai-whisper":
+                return self._transcribe_whisper(file_path)
             else:
-                # Local Fallback (openai-whisper)
-                result = self.model.transcribe(file_path, beam_size=5)
-                if cleanup_temp and os.path.exists(temp_path):
-                    os.remove(temp_path)
-                return result["text"].strip() if result["text"] else None
+                return None
         except Exception as e:
             print(f"Transcription error: {e}")
             return None
@@ -72,20 +44,39 @@ class Transcriber:
         Transcribes raw numpy audio data.
         """
         if self.client:
-            temp_wav = "temp_stream_chunk.wav"
+            temp_wav = None
             try:
-                int_data = (audio_data * 32767).astype(np.int16)
-                wav.write(temp_wav, 16000, int_data)
+                with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
+                    int_data = (audio_data * 32767).astype(np.int16)
+                    wav.write(tmp.name, 16000, int_data)
+                    temp_wav = tmp.name
+                
                 text = self.transcribe_file(temp_wav)
-                if os.path.exists(temp_wav): os.remove(temp_wav)
                 return text
             except Exception as e:
                 print(f"Stream-to-API error: {e}")
                 return None
-        else:
-            # Local mode (openai-whisper)
+            finally:
+                if temp_wav and os.path.exists(temp_wav):
+                    try: os.unlink(temp_wav)
+                    except: pass
+        
+        elif self.backend == "faster-whisper":
             try:
-                # Ensure float32 numpy array
+                if isinstance(audio_data, np.ndarray):
+                    audio_to_transcribe = audio_data.astype(np.float32)
+                else:
+                    audio_to_transcribe = np.frombuffer(audio_data, dtype=np.float32)
+                
+                segments, _ = self.model.transcribe(audio_to_transcribe, beam_size=5)
+                text = " ".join(seg.text for seg in segments)
+                return text.strip() if text.strip() else None
+            except Exception as e:
+                print(f"faster-whisper stream error: {e}")
+                return None
+        
+        elif self.backend == "openai-whisper":
+            try:
                 if isinstance(audio_data, np.ndarray):
                     audio_to_transcribe = audio_data.astype(np.float32)
                 else:
@@ -94,8 +85,45 @@ class Transcriber:
                 result = self.model.transcribe(audio_to_transcribe, beam_size=5)
                 return result["text"].strip() if result["text"] else None
             except Exception as e:
-                print(f"Local stream error: {e}")
+                print(f"openai-whisper stream error: {e}")
                 return None
+        
+        return None
 
-if __name__ == "__main__":
-    pass
+    def _transcribe_api(self, file_path):
+        """Transcribe using OpenAI Whisper API."""
+        if hasattr(file_path, 'read'):
+            data = file_path.read()
+            if len(data) < 100:
+                return None
+            suffix = ".webm"
+            fd, tmp_path = tempfile.mkstemp(suffix=suffix)
+            os.close(fd)
+            with open(tmp_path, "wb") as f:
+                f.write(data)
+            result = self._send_to_api(tmp_path)
+            os.unlink(tmp_path)
+            return result
+        else:
+            return self._send_to_api(file_path)
+    
+    def _send_to_api(self, path):
+        """Send file path to OpenAI API."""
+        with open(path, "rb") as f:
+            response = self.client.audio.transcriptions.create(
+                model="whisper-1",
+                file=f,
+                response_format="text"
+            )
+        return response.strip()
+    
+    def _transcribe_faster(self, file_path):
+        """Transcribe using faster-whisper (CTranslate2)."""
+        segments, _ = self.model.transcribe(str(file_path), beam_size=5)
+        text = " ".join(seg.text for seg in segments)
+        return text.strip() if text.strip() else None
+    
+    def _transcribe_whisper(self, file_path):
+        """Transcribe using openai-whisper (PyTorch)."""
+        result = self.model.transcribe(str(file_path), beam_size=5)
+        return result["text"].strip() if result["text"] else None
