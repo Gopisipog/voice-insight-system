@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+node_modules/
+dist/
+.vite/
+*.log
+temp_audio_chunk.webm
+err.txt
