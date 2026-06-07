@@ -264,16 +264,16 @@ col1, col2 = st.columns([1, 1])
 with col1:
     st.header("📤 Upload Audio")
     
-    # File upload
+    # File upload (best option for accuracy)
     uploaded_file = st.file_uploader(
-        "Choose an audio file",
-        type=["wav", "mp3", "m4a", "webm", "ogg", "flac"],
+        "📁 Choose an audio file (best accuracy)",
+        type=["wav", "mp3", "m4a", "webm", "ogg", "flac", "mp4"],
         help="Upload a recording of your voice or meeting",
     )
     
-    # Or record directly (browser mic)
-    st.markdown("**Or record directly:**")
-    audio_data = st.audio_input("Record a voice message")
+    # Browser mic recording
+    st.markdown("**... or record directly from your browser:**")
+    audio_data = st.audio_input("🎤 Click to record voice message")
     
     # Transcription trigger
     audio_bytes = None
@@ -283,10 +283,12 @@ with col1:
         audio_bytes = uploaded_file.read()
         filename = uploaded_file.name
         st.audio(audio_bytes, format=uploaded_file.type or "audio/webm")
+        st.info(f"✅ Loaded {len(audio_bytes)} bytes from file")
     elif audio_data is not None:
         audio_bytes = audio_data.read()
         filename = "recording.webm"
         st.audio(audio_bytes)
+        st.info(f"✅ Recorded {len(audio_bytes)} bytes from microphone. Click 'Transcribe & Analyze' below.")
     
     if audio_bytes and st.button("🎯 Transcribe & Analyze", type="primary", disabled=not st.session_state.api_key_configured):
         # Transcribe
