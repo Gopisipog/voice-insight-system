@@ -22,16 +22,9 @@
     ],
     "win": {
       "target": [
-        "nsis",
         "portable"
       ],
       "icon": "icon.ico"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "shortcutName": "VoiceInsight"
     },
     "extraResources": [
       {

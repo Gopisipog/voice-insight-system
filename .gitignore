@@ -10,3 +10,6 @@ temp_audio_chunk.webm
 err.txt
 pwa/dist/  
 pwa/node_modules/ 
+
+# Local Netlify folder
+.netlify

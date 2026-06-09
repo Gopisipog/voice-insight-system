@@ -1,12 +1,10 @@
-const { app, BrowserWindow, Menu, dialog, shell } = require('electron');
+const { app, BrowserWindow, Menu, dialog, shell, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
 // Configuration
 const BACKEND_URL = process.env.VITE_BACKEND_HOST || 'voice-insight-system.onrender.com';
-const BACKEND_PORT = process.env.VITE_SERVER_PORT || '10000';
-const VITE_PORT = 5173; // Local dev server port if running
-const PWA_URL = `http://voice-insight-system.netlify.app`; // Default production URL
+const PWA_URL = process.env.PWA_URL || 'https://voice-insight-pwa.netlify.app';
 
 let mainWindow;
 
@@ -17,7 +15,9 @@ function createWindow() {
         minWidth: 800,
         minHeight: 600,
         title: 'VoiceInsight',
-        icon: path.join(__dirname, 'icon.png'),
+        icon: fs.existsSync(path.join(__dirname, 'icon.png'))
+            ? path.join(__dirname, 'icon.png')
+            : undefined,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: false,
@@ -83,15 +83,26 @@ function createWindow() {
     Menu.setApplicationMenu(menu);
 
     // Load the PWA
-    mainWindow.loadURL(PWA_URL);
+    mainWindow.loadURL(PWA_URL).catch(() => {
+        // Fallback to local dev server if PWA is unreachable
+        const devUrl = 'http://localhost:5173';
+        mainWindow.loadURL(devUrl).catch(() => {
+            mainWindow.loadURL(`data:text/html,<html><body style="background:#1a1a2e;color:white;display:flex;align-items:center;justify-content:center;font-family:sans-serif"><h2>Could not connect to VoiceInsight frontend.<br>Ensure the app is running or check your network.</h2></body></html>`);
+        });
+    });
 
-    // Show window when ready
+    // Show window when ready or fallback
     mainWindow.once('ready-to-show', () => {
         mainWindow.show();
     });
 
     mainWindow.on('closed', () => {
         mainWindow = null;
+    });
+
+    // Handle navigation errors
+    mainWindow.webContents.on('did-fail-load', (event, errorCode, errorDescription) => {
+        console.warn(`Page load failed: ${errorCode} - ${errorDescription}`);
     });
 
     // Handle external links
@@ -102,7 +113,7 @@ function createWindow() {
 }
 
 function getBackendUrl() {
-    return `https://${BACKEND_URL}:${BACKEND_PORT}`;
+    return `https://${BACKEND_URL}`;
 }
 
 function showAbout() {
@@ -150,6 +161,12 @@ function checkForUpdates() {
 }
 
 app.whenReady().then(() => {
+    // IPC handlers for renderer
+    ipcMain.handle('get-backend-url', () => getBackendUrl());
+    ipcMain.handle('download-update', () => downloadUpdate());
+    ipcMain.handle('open-external', (event, url) => shell.openExternal(url));
+    ipcMain.handle('get-app-version', () => app.getVersion());
+
     createWindow();
     
     app.on('activate', () => {
