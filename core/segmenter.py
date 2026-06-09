@@ -33,7 +33,7 @@ class SemanticSegmenter:
 
     def add_text(self, text):
         """
-        Groups streaming text into 'Knowledge Blocks' (3-4 meaningful sentences).
+        Groups streaming text into knowledge blocks.
         Returns units only when they are self-sufficient.
         """
         if not text.strip():
@@ -46,11 +46,9 @@ class SemanticSegmenter:
         sentences = re.split(r'(?<=[.!?]) +', self.buffer)
         
         units = []
-        # We want blocks of ~3-4 meaningful sentences
-        TARGET_BLOCK_SIZE = 3 
+        TARGET_BLOCK_SIZE = 1
 
-        # If we have enough sentences to form a knowledge block
-        if len(sentences) > TARGET_BLOCK_SIZE:
+        if len(sentences) >= TARGET_BLOCK_SIZE:
             # Extract the first N sentences as a block
             block_sentences = []
             while len(block_sentences) < TARGET_BLOCK_SIZE and sentences:
@@ -72,3 +70,12 @@ class SemanticSegmenter:
                 units.append(final_unit)
 
         return units
+
+    def flush(self):
+        """Force-emit buffered text if silence has exceeded max_gap_seconds."""
+        if self.buffer.strip() and (time.time() - self.last_input_time > self.max_gap_seconds):
+            unit = self.buffer.strip()
+            self.buffer = ""
+            if self.is_meaningful(unit):
+                return [unit]
+        return []

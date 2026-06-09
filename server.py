@@ -113,8 +113,11 @@ async def transcription_worker():
                         new_units = segmenter.add_text(text)
                         for unit in new_units:
                             await broadcast_segment(unit)
-                            if len(audio_buffer) > WINDOW_BYTES:
-                                audio_buffer[0:len(audio_buffer) - WINDOW_BYTES] = b""
+                        if new_units and len(audio_buffer) > WINDOW_BYTES:
+                            audio_buffer[0:len(audio_buffer) - WINDOW_BYTES] = b""
+
+                    for unit in segmenter.flush():
+                        await broadcast_segment(unit)
 
                     last_processed_time = time.time()
 
