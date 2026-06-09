@@ -56,7 +56,12 @@ function App() {
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, sampleRate: 16000 } });
-      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      let audioCtx;
+      try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+      } catch {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
       const source = audioCtx.createMediaStreamSource(stream);
       const processor = audioCtx.createScriptProcessor(4096, 1, 1);
       source.connect(processor);
